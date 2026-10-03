@@ -12,10 +12,12 @@ Repositorio con los 4 trabajos prácticos de la materia **Redes de Datos** del n
 - Conmutación de Capa 2 (switching)
 - Configuración básica de switches Cisco (modelo Catalyst)
 - VLANs (IEEE 802.1Q) - segmentación de redes lógicas
-- Protocolo Spanning Tree (STP) - prevención de bucles
 - Seguridad de puertos (port-security)
-- Acceso remoto seguro (SSH y TELNET)
 - Troncales (trunk) entre switches
+- Arquitectura jerárquica: switches de acceso, distribución y núcleo
+- Protocolo Spanning Tree (STP, IEEE 802.1D) - switch raíz, puertos raíz/designados/bloqueados
+- Agregado de enlaces con LACP (EtherChannel) y balanceo de carga (src-mac / dst-mac)
+- Acceso remoto por TELNET y acceso seguro con SSH v2 (desactivación de TELNET)
 
 **Herramientas:** Cisco Packet Tracer (simulador)  
 **Tiempo estimado:** 180 minutos
@@ -28,13 +30,14 @@ Repositorio con los 4 trabajos prácticos de la materia **Redes de Datos** del n
 
 **Temas principales:**
 - Estándares IEEE 802.11 (WLAN)
-- Configuración de Access Points (WRT300N)
-- Modo Bridge (conmutación Capa 2 inalámbrica)
-- Modo Router (enrutamiento Capa 3 inalámbrico)
-- Seguridad WLAN con WPA2/PSK
-- Direccionamiento IP estático y dinámico (DHCP)
-- Conceptos de Gateway y enrutamiento
-- Firmware y actualización de dispositivos
+- Configuración de Access Points (Linksys WRT300N)
+- Modo Bridge (conmutación Capa 2) - LAN VENTAS
+- Modo Router (conmutación Capa 3) - LAN CENTRAL ↔ LAN Seguridad
+- Seguridad WLAN: WPA2-PSK con cifrado AES, SSID oculto, selección de canal
+- Direccionamiento IP estático y dinámico (DHCP en el AP)
+- Conceptos de Gateway y su impacto en el enrutamiento (análisis con tracert)
+- Revisión de firmware como buena práctica de seguridad
+- Verificación de servicios (PING, TRACERT, FTP y HTTPS hacia Server Pedidos)
 
 **Herramientas:** Cisco Packet Tracer  
 **Tiempo estimado:** 150 minutos
@@ -47,12 +50,13 @@ Repositorio con los 4 trabajos prácticos de la materia **Redes de Datos** del n
 
 **Temas principales:**
 - Conmutación de Capa 3 (routing)
-- Configuración de interfaces de routers
-- Direccionamiento IP con CIDR y Subnetting
-- Enrutamiento dinámico con RIP (versión 2)
-- Tablas de enrutamiento
-- Acceso remoto con SSH
-- Debugging de protocolos de enrutamiento
+- Topología WAN: Casa Central (3 routers Local) y 3 sucursales (routers Remoto)
+- Direccionamiento IP classless: Subnetting, VLSM y CIDR
+- Configuración de interfaces FastEthernet y Serial (encapsulación PPP, clock rate en DCE)
+- Enrutamiento dinámico con RIP v2 (passive-interface, redistribute static)
+- Tablas de enrutamiento (distancia administrativa, métrica, temporizadores RIP)
+- Acceso remoto con SSH v2 y pruebas de TELNET
+- Debugging de RIP (`debug ip rip`)
 - Access Control Lists (ACL) estándar - filtrado de paquetes IP
 
 **Herramientas:** Cisco Packet Tracer  
@@ -62,18 +66,17 @@ Repositorio con los 4 trabajos prácticos de la materia **Redes de Datos** del n
 
 ## TL4 - Configuración Avanzada de Routers y VPN
 
-**Objetivo:** Configurar routers avanzados con enrutamiento entre VLANs e implementar **Redes Privadas Virtuales (VPN)** con IPSec.
+**Objetivo:** Configurar routers con enrutamiento entre VLANs e implementar una **Red Privada Virtual (VPN)** con un túnel IPSec sitio a sitio entre dos sucursales (Router1 ↔ Router2) a través de un ISP.
 
 **Temas principales:**
-- Enrutamiento entre VLANs (inter-VLAN routing)
-- Protocolos de enrutamiento dinámico avanzados (EIGRP, IGRP)
-- Redes Privadas Virtuales (VPN)
-- IPSec en modo túnel
-- Internet Key Exchange (IKE) - intercambio de claves
-- Protocolos de encriptación (AES) y autenticación (SHA, HMAC)
-- Algoritmo Diffie-Hellman
+- Enrutamiento entre VLANs (inter-VLAN routing) - VLAN 1, 10 y 20
+- Enrutamiento dinámico con EIGRP (Sistema Autónomo 1) y ruta por defecto hacia el ISP
+- Redes Privadas Virtuales (VPN) sitio a sitio
+- IPSec en modo túnel (transform-set AH-SHA-HMAC + ESP-3DES, crypto map)
+- Internet Key Exchange (IKE / ISAKMP) - Fase 1 con AES y clave pre-compartida
+- Algoritmo Diffie-Hellman (grupo 5)
 - Access Control Lists (ACL) extendidas
-- Filtrado y "tunelización" de paquetes
+- "Tunelización" del tráfico de la VLAN 10 y filtrado del resto de las VLANs
 
 **Herramientas:** Cisco Packet Tracer  
 **Tiempo estimado:** 120 minutos
@@ -98,8 +101,8 @@ TP-REDES-2026/
 │   └── Redes TP Lab 3 - Resolución.pdf   (resolución)
 ├── TL4/
 │   ├── TL4-Conf_Avanz_Routers_VPN-2026.pdf  (enunciado)
-│   ├── TL4-Configuración_Routers-2026.pkt   (archivo simulador)
-│   └── Redes TP Lab 4 - Resolución.pdf      (resolución)
+│   ├── TL 4 Configuración avanzada de Routers - CLI  2026.pkt   (archivo simulador)
+│   └── Redes TP Lab 4 - Resolucion.pdf      (resolución)
 └── README.md
 
 ```
@@ -125,11 +128,12 @@ TP-REDES-2026/
 
 ## Evaluación
 
-Cada trabajo incluye:
-- Ejecución correcta de actividades experimentales
-- Respuestas satisfactorias a evaluaciones orales individuales
-- Demostración del funcionamiento mediante pruebas (PING, TRACERT, etc.)
-- Configuración automática de dispositivos en el simulador
+Criterios de aprobación (según cada enunciado):
+- Ejecución correcta de actividades experimentales y logro de los objetivos técnicos (TL1, TL2, TL4)
+- Respuestas satisfactorias a evaluaciones orales individuales (TL1, TL2, TL4)
+- Evaluación de configuración en el simulador con calificación SUFICIENTE o MUY BUENO (TL1)
+- Práctico en el simulador con lista de comandos y material de consulta (TL3)
+- Demostración del funcionamiento mediante PING, TRACERT o navegación web (TL4)
 
 ---
 
