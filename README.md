@@ -1,4 +1,4 @@
-# Trabajos Libres - Materia Redes UTN 2026
+# Trabajos de Laboratorio - Materia Redes UTN 2026
 
 Repositorio con los 4 trabajos prácticos de la materia **Redes de Datos** del nivel Cuarto de Ingeniería en Sistemas de la Universidad Tecnológica Nacional - Facultad Regional Buenos Aires.
 
